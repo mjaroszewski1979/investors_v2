@@ -27,7 +27,7 @@
 							<h1>Famous Investors</h1>
 							<p>Time is your friend; impulse is your enemy.</p>
 							<ul class="actions">
-								<li><a href="#form-wrapper" class="arrow scrolly"><span class="label">Next</span></a></li>
+								<li><a href="#table-wrapper" class="arrow scrolly"><span class="label">Next</span></a></li>
 							</ul>
 						</header>
 						<div class="content">
@@ -140,7 +140,7 @@
 									<h3>Form</h3>
 								</header>
 								<div class="content">
-									<form method="post" action="#">
+									<form method="get" action="." id="form-wrapper">
 										<div class="fields">
 											<div class="field half">
 												<label for="demo-name">Name</label>
@@ -151,34 +151,26 @@
 												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
 											</div>
 											<div class="field">
-												<label for="demo-category">Category</label>
-												<select name="demo-category" id="demo-category">
+												<label for="country-list">Countries</label>
+												<select name="country-list" id="country-list">
 													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
+													{% for obj in countries %}
+													<option value="{{ obj.name }}">{{ obj.name }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="field">
+												<label for="market-list">Markets</label>
+												<select name="market-list" id="market-list">
+													<option value="">-</option>
+													{% for obj in funds %}
+													<option value="{{ obj }}">{{ obj }}</option>
+													{% endfor %}
 												</select>
 											</div>
 											<div class="field half">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="field">
-												<label for="demo-message">Message</label>
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+												<input type="radio" id="long-only" name="long-only">
+												<label for="long-only">Long only</label>
 											</div>
 										</div>
 										<ul class="actions">
@@ -188,12 +180,39 @@
 									</form>
 								</div>
 							</section>
-                            <section>
-                                {% for obj in investors %}
-                                <h2>{{ obj }}</h2>
-                                {% endfor %}
+							<section>
+								<header>
+									<h3>Table</h3>
+								</header>
+								<h2>{{ market }}</h2>
+								<div class="content">
 
-                            </section>
+									{% if investors %}
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper" id="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Investor</th>
+													<th>Fund</th>
+													<th>AUM</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for investor in investors %}
+												<tr>
+													<td>{{ investor.name }}</td>
+													<td>{{ investor.fund.name }}</td>
+													<td>{{ investor.fund.aum }}</td>
+												</tr>
+												{% endfor %}
+										</table>
+									</div>
+									{% endif %}
+								</div>
+							</section>
+
 
 						</div>
 						<footer>
