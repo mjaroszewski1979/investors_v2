@@ -142,14 +142,6 @@
 								<div class="content">
 									<form method="get" action="." id="form-wrapper">
 										<div class="fields">
-											<div class="field half">
-												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-											</div>
-											<div class="field half">
-												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-											</div>
 											<div class="field">
 												<label for="country-list">Countries</label>
 												<select name="country-list" id="country-list">
@@ -168,6 +160,14 @@
 													{% endfor %}
 												</select>
 											</div>
+											<div class="field">
+												<label for="population-avg">Population average - {{ average }}</label>
+												<select name="population-avg" id="population-avg">
+													<option value="">-</option>
+													<option value="above">Above</option>
+													<option value="below">Below</option>
+												</select>
+											</div>
 											<div class="field half">
 												<input type="radio" id="long-only" name="long-only">
 												<label for="long-only">Long only</label>
@@ -184,7 +184,7 @@
 								<header>
 									<h3>Table</h3>
 								</header>
-								<h2>{{ market }}</h2>
+								<h2>{{ population }}</h2>
 								<div class="content">
 
 									{% if investors %}
