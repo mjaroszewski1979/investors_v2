@@ -136,9 +136,6 @@
 
 
                             <section>
-								<header>
-									<h3>Form</h3>
-								</header>
 								<div class="content">
 									<form method="get" action="." id="form-wrapper">
 										<div class="fields">
@@ -161,8 +158,24 @@
 												</select>
 											</div>
 											<div class="field">
-												<label for="population-avg">Population average - {{ average }}</label>
+												<label for="population-avg">Population average | {{ pop_avg }}</label>
 												<select name="population-avg" id="population-avg">
+													<option value="">-</option>
+													<option value="above">Above</option>
+													<option value="below">Below</option>
+												</select>
+											</div>
+											<div class="field">
+												<label for="aum-avg">Aum average | {{ aum_avg }}</label>
+												<select name="aum-avg" id="aum-avg">
+													<option value="">-</option>
+													<option value="above">Above</option>
+													<option value="below">Below</option>
+												</select>
+											</div>
+											<div class="field">
+												<label for="age-avg">Age average | {{ age_avg }}</label>
+												<select name="age-avg" id="age-avg">
 													<option value="">-</option>
 													<option value="above">Above</option>
 													<option value="below">Below</option>
@@ -181,36 +194,36 @@
 								</div>
 							</section>
 							<section>
-								<header>
-									<h3>Table</h3>
-								</header>
-								<h2>{{ population }}</h2>
+								
 								<div class="content">
 
 									{% if investors %}
 
-									<h4>Alternate</h4>
+
 									<div class="table-wrapper" id="table-wrapper">
 										<table class="alt">
 											<thead>
 												<tr>
-													<th>Investor</th>
-													<th>Fund</th>
-													<th>AUM</th>
+													<th>INVESTOR</th>
+													<th>COUNTRY</th>
+													<th>FUND</th>
 												</tr>
 											</thead>
 											<tbody>
 												{% for investor in investors %}
 												<tr>
-													<td>{{ investor.name }}</td>
-													<td>{{ investor.fund.name }}</td>
-													<td>{{ investor.fund.aum }}</td>
+													<td>{{ investor.name|upper }}</td>
+													<td>{{ investor.country.name|upper }}</td>
+													<td>{{ investor.fund.name|upper }}</td>
 												</tr>
 												{% endfor %}
 										</table>
 									</div>
 									{% endif %}
 								</div>
+								{% for item in items %}
+								<h2>{{ item }}</h2>
+								{% endfor %}
 							</section>
 
 

@@ -23,4 +23,7 @@ class Investor(BaseClass):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     fund = models.ForeignKey(Fund, null=True, on_delete=models.CASCADE)
 
+    def get_age(self):
+        return self.age.year
+
 
