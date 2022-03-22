@@ -12,7 +12,7 @@ class QueryAttributes:
         self.population_avg = int(models.Country.objects.aggregate(Avg('population'))['population__avg'])
         self.aum_avg = int(models.Fund.objects.aggregate(Avg('aum'))['aum__avg'])
         self.countries = models.Country.objects.all()
-        self.funds = set(models.Fund.objects.values_list('market', flat=True))
+        self.funds = models.Fund.objects.order_by('market').values_list('market', flat=True).distinct()
         self.current_year = timezone.now().year
         self.age_avg = int(models.Investor.objects.aggregate(average_age=Avg(self.current_year - ExtractYear('age')))['average_age'])
         self.age_result = int(self.current_year - self.age_avg)
@@ -37,9 +37,9 @@ class QueryAttributes:
             self.query_attributes['age__gt'] = self.date_value
         if age == 'below':
             self.query_attributes['age__lt'] = self.date_value
-
         investors = models.Investor.objects.filter(**self.query_attributes)
         return investors
+
 
 
 
