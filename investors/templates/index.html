@@ -28,7 +28,7 @@
 							<p>Time is your friend; impulse is your enemy.</p>
 							<ul class="actions">
 								{% if investors %}
-								<li><a href="#table-wrapper" class="arrow scrolly"><span class="label">Next</span></a></li>
+								<li><a href="#form-wrapper" class="arrow scrolly"><span class="label">Next</span></a></li>
 								{% else %}
 								<li><a href="#form-wrapper" class="arrow scrolly"><span class="label">Next</span></a></li>
 								{% endif %}
@@ -215,11 +215,12 @@
 											<tbody>
 												{% for investor in investors %}
 												<tr>
-													<td>{{ investor.age }}</td>
+													<td class='investor-name'>{{ investor.name }}</td>
 													<td>{{ investor.country.name|upper }}</td>
 													<td>{{ investor.fund.name|upper }}</td>
 												</tr>
 												{% endfor %}
+											</tbody>
 										</table>
 									</div>
 									{% endif %}
