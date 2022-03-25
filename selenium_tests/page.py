@@ -6,6 +6,8 @@ from .locators import IndexPageLocators
 
 
 
+
+
 class BasePage(object):
 
 
@@ -78,6 +80,8 @@ class IndexPage(BasePage):
     def is_aum_select_works(self):
         result = self.is_select_value_works(select_value=IndexPageLocators.AUM_SELECT, text='MORTIMER J. BUCKLEY')
         return result
+
+
 
 
 

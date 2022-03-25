@@ -8,7 +8,7 @@ import time
 
 
 
-class BitcoinTest(StaticLiveServerTestCase):
+class InvestorsTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.driver =  webdriver.Chrome('selenium_tests/chromedriver.exe')
@@ -39,6 +39,7 @@ class BitcoinTest(StaticLiveServerTestCase):
         assert index_page.is_country_select_works()
         assert index_page.is_market_select_works()
         assert index_page.is_aum_select_works()
+
   
 
 

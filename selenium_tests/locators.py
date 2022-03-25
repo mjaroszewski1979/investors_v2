@@ -7,7 +7,6 @@ class IndexPageLocators(object):
     COUNTRY_SELECT = (By.XPATH, "//select[@name='country-list']/option[@value='france']")
     MARKET_SELECT = (By.XPATH, "//select[@name='market-list']/option[@value='stocks']")
     AUM_SELECT = (By.XPATH, "//select[@name='aum-avg']/option[@value='above']")
-    LONG_SELECT = (By.TAG_NAME, 'input')
     SUBMIT_BUTTON = (By.CLASS_NAME, 'primary')
     TABLE_DATA = (By.XPATH, "//table[@class='alt']//tbody//tr//td")
     INVESTOR_NAME = (By.CLASS_NAME, 'investor-name')
