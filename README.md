@@ -18,11 +18,11 @@
 * Selenium and unit tests combined
 
 ```
-coverage run -p manage.py test api && coverage run -p manage.py test frontend && coverage run -p manage.py test selenium_tests && coverage combine && coverage html
+coverage run -p manage.py test investors && coverage run -p manage.py test selenium_tests && coverage combine && coverage html
 
 ```
 
-<img src="https://github.com/mjaroszewski1979/investors_v1/blob/main/cov_report.png">
+<img src="https://github.com/mjaroszewski1979/investors_v2/blob/main/cov_report.png">
 
 ------------------------------------------------
 

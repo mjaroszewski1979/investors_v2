@@ -215,7 +215,7 @@
 											<tbody>
 												{% for investor in investors %}
 												<tr>
-													<td class='investor-name'>{{ investor.name }}</td>
+													<td class='investor-name'>{{ investor.name|upper }}</td>
 													<td>{{ investor.country.name|upper }}</td>
 													<td>{{ investor.fund.name|upper }}</td>
 												</tr>
