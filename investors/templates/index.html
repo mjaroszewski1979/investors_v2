@@ -147,7 +147,7 @@
 												<label for="country-list">Countries</label>
 												<select name="country-list" id="country-list">
 													<option value="">-</option>
-													{% for obj in data.countries %}
+													{% for obj in data.all_countries %}
 													<option value="{{ obj.name }}">{{ obj.name }}</option>
 													{% endfor %}
 												</select>
@@ -156,7 +156,7 @@
 												<label for="market-list">Markets</label>
 												<select name="market-list" id="market-list">
 													<option value="">-</option>
-													{% for obj in data.funds %}
+													{% for obj in data.markets %}
 													<option value="{{ obj }}">{{ obj }}</option>
 													{% endfor %}
 												</select>

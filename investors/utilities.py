@@ -9,12 +9,14 @@ from . import models
 class QueryAttributes:
     def __init__(self):
         self.query_attributes = {}
-        self.population_avg = int(models.Country.objects.aggregate(Avg('population'))['population__avg'])
-        self.aum_avg = int(models.Fund.objects.aggregate(Avg('aum'))['aum__avg'])
-        self.countries = models.Country.objects.all()
-        self.funds = models.Fund.objects.order_by('market').values_list('market', flat=True).distinct()
         self.current_year = timezone.now().year
-        self.age_avg = int(models.Investor.objects.aggregate(average_age=Avg(self.current_year - ExtractYear('age')))['average_age'])
+        self.all_investors = models.Investor.objects.all()
+        self.all_countries = models.Country.objects.all()
+        self.all_funds = models.Fund.objects.all()
+        self.age_avg = int(self.all_investors.aggregate(average_age=Avg(self.current_year - ExtractYear('age')))['average_age'])
+        self.population_avg = int(self.all_countries.aggregate(Avg('population'))['population__avg'])
+        self.aum_avg = int(self.all_funds.aggregate(Avg('aum'))['aum__avg'])
+        self.markets = self.all_funds.order_by('market').values_list('market', flat=True).distinct()
         self.age_result = int(self.current_year - self.age_avg)
         self.date_value = date(year=self.age_result, month=1, day=1)
 
@@ -37,7 +39,7 @@ class QueryAttributes:
             self.query_attributes['age__gt'] = self.date_value
         if age == 'below':
             self.query_attributes['age__lt'] = self.date_value
-        investors = models.Investor.objects.filter(**self.query_attributes)
+        investors = self.all_investors.select_related('country', 'fund').all().filter(**self.query_attributes)
         return investors
 
 
