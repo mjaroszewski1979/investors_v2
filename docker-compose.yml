@@ -1,19 +1,23 @@
 version: "3.8"
 
 services:
+
+  # Django service configuration
   django:
-    build: .
-    container_name: django
+    build: .  # Build context is the current directory
+    container_name: django  # Container name set to 'django'
     volumes:
-      - .:/app
+      - .:/app  # Mount current directory into '/app' within the container
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Map port 8000 on host to port 8000 in container
     depends_on:
-      - pgdb
+      - pgdb  # Ensure 'pgdb' service is started before 'django'
+      
+  # PostgreSQL database service configuration 
   pgdb:
-    image: postgres
-    container_name: pgdb
+    image: postgres  # Use the official 'postgres' Docker image
+    container_name: pgdb  # Container name set to 'pgdb'
     environment:
-      - POSTGRES_DB=${NAME}
-      - POSTGRES_USER=${USER}
-      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${NAME}  # Set PostgreSQL database name from environment
+      - POSTGRES_USER=${USER}  # Set PostgreSQL user from environment
+      - POSTGRES_PASSWORD=${PASSWORD}  # Set PostgreSQL password from environment
